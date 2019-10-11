@@ -8,11 +8,11 @@
                     <div class="form-group row mt-3">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <input class="form-control" type="text" id="phone_number" name="phone_number" placeholder="Mobile Number" required #phone_number="ngModel" [(ngModel)]="users.phone_number" [class.is-invalid]="hp.invalid && hp.touched" pattern="(628)[0-9]{7,15}">
+                                <input class="form-control" type="text" id="phone_number" name="phone_number" placeholder="Mobile Number" required #phone_number="ngModel" [(ngModel)]="users.phone_number" [class.is-invalid]="phone_number.invalid && phone_number.touched" pattern="(628)[0-9]{7,15}">
                             </div>
-                            <span class="help-block" [hidden]="hp.valid || hp.untouched">
-                                <div class="red-text" *ngIf="hp.errors && hp.errors.required">*Phone number is required.</div>
-                                <div class="red-text" *ngIf="hp.errors && hp.errors.pattern">*Please enter number only and valid Indonesian phone number/.</div>
+                            <span class="help-block" [hidden]="phone_number.valid || phone_number.untouched">
+                                <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.required">*Phone number is required.</div>
+                                <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.pattern">*Please enter number only and valid Indonesian phone number/.</div>
                             </span>
                         </div>
                     </div>

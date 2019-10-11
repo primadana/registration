@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { RegistrationFormService } from './registration-form.service';
@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent implements OnInit {
+  @ViewChild('registration', { static: false }) public registration: NgForm;
+  
   month: Month[] = [
     {value: '1', viewValue: 'January'},
     {value: '2', viewValue: 'February'},
@@ -59,6 +61,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   save(registration){
+    console.log(registration);
     if (this.validate(registration)) {
       const param = {
         data: this.users
