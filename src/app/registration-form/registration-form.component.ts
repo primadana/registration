@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { RegistrationFormService } from './registration-form.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -25,8 +26,11 @@ export class RegistrationFormComponent implements OnInit {
 
   date: Date[] = [];
   year: Year[] = [];
+  public users: any = {};
 
-  constructor() { }
+  constructor(
+    public registrationService: RegistrationFormService
+  ) { }
 
   ngOnInit() {
     this.countDate();
@@ -51,6 +55,69 @@ export class RegistrationFormComponent implements OnInit {
       str.push({value: i, viewValue: i});
     }
     this.year = str;
+  }
+
+  save(registration){
+    if (this.validate(registration)) {
+      const param = {
+        data: this.users
+      };
+      this.registrationService.saveRegistration(param).subscribe(response => {
+        if(response.status === true){
+          // Swal.fire({
+          //   title: "Registration Success.",
+          //   type: 'success',
+          //   showCancelButton: false,
+          //   confirmButtonColor: '#3085d6',
+          //   cancelButtonColor: '#d33',
+          //   confirmButtonText: 'OK',
+          //   allowOutsideClick: false
+          // }).then((result) => {
+          //   disable form, hidden footer, show button login
+          // });
+        }
+        else{
+          // Swal.fire({
+          //   title: "Registration Error.",
+          //   text: "Please contact the administrator. Thank you.",
+          //   type: 'error',
+          //   showCancelButton: false,
+          //   confirmButtonColor: '#3085d6',
+          //   cancelButtonColor: '#d33',
+          //   confirmButtonText: 'OK',
+          //   allowOutsideClick: false
+          // }).then((result) => {
+          //   if (result.value) {
+          //     return false;
+          //   }
+          // });
+        }
+      });
+    }
+  }
+
+  validate(form_item: NgForm){
+    const value: any = form_item.form.value;
+    if (value.phone_number === '' || value.phone_number === undefined || value.first_name === '' || value.first_name === undefined || value.last_name === '' || value.last_name === undefined || value.email === '' || value.email === undefined) {
+      // Swal.fire({
+      //   title: "Registration Failed. Please enter all required form.",
+      //   text: "Required form: Phone Number, First Name, Last Name, and Email.",
+      //   type: 'warning',
+      //   showCancelButton: false,
+      //   confirmButtonColor: '#3085d6',
+      //   cancelButtonColor: '#d33',
+      //   confirmButtonText: 'OK',
+      //   allowOutsideClick: false
+      // }).then((result) => {
+      //   if (result.value) {
+      //     return false;
+      //   }
+      // });
+      return false;
+    }
+    else if (form_item.form.status === 'VALID') {
+      return true;
+    }
   }
 
 }
