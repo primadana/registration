@@ -29,7 +29,16 @@ export class RegistrationFormComponent implements OnInit {
 
   date: Date[] = [];
   year: Year[] = [];
-  public users: any = {};
+  public users: any = {
+    phone_number: null,
+    first_name: null,
+    last_name: null,
+    email: null,
+    year: null,
+    month: null,
+    date: null,
+    gender: null
+  };
   login: boolean = false;
   disableForm: boolean = false;
 
@@ -40,7 +49,6 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit() {
     this.countDate();
     this.countYear();
-    this.disableForm = true;
   }
 
   countDate(){
@@ -84,6 +92,7 @@ export class RegistrationFormComponent implements OnInit {
             if(result.value){
               this.login = true;
               this.disableForm = true;
+              registration.resetForm();
             }
           });
         }
