@@ -12,7 +12,7 @@
                             </div>
                             <span class="help-block" [hidden]="phone_number.valid || phone_number.untouched">
                                 <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.required">*Phone number is required.</div>
-                                <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.pattern">*Please enter number only and valid Indonesian phone number/.</div>
+                                <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.pattern">*Please enter number only and valid Indonesian phone number.</div>
                             </span>
                         </div>
                     </div>
@@ -42,22 +42,22 @@
                         </label>
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <select id="month" name="month" class="form-control col-lg-3 mr-3">
+                                <select id="month" name="month" class="form-control col-lg-3 mr-3" [(ngModel)]="users.month">
                                     <option disabled>Month</option>
-                                    <option *ngFor="let rel of month" [value]="rel.value">
+                                    <option *ngFor="let rel of month" [ngValue]="rel.value">
                                         {{rel.viewValue}}
                                     </option>
                                 </select>
-                                <select id="date" name="date" class="form-control col-lg-2 mr-3">
+                                <select id="date" name="date" class="form-control col-lg-2 mr-3" [(ngModel)]="users.date">
                                     <option disabled>Date</option>
                                     <option>1</option>
-                                    <option *ngFor="let rel of date" [value]="rel.value">
+                                    <option *ngFor="let rel of date" [ngValue]="rel.value">
                                         {{rel.viewValue}}
                                     </option>
                                 </select>
-                                <select id="year" name="year" class="form-control col-lg-2 mr-3">
+                                <select id="year" name="year" class="form-control col-lg-2 mr-3" [(ngModel)]="users.year">
                                     <option disabled>Year</option>
-                                    <option *ngFor="let rel of year" [value]="rel.value">
+                                    <option *ngFor="let rel of year" [ngValue]="rel.value">
                                         {{rel.viewValue}}
                                     </option>
                                 </select>
@@ -68,11 +68,11 @@
                         <div class="col-lg-12">
                             <div class="input-group">
                                 <div class="col-lg-1">
-                                    <input class="form-control" type="radio" id="male" name="gender" value="male">
+                                    <input class="form-control" type="radio" id="male" name="gender" value="male" [(ngModel)]="users.gender">
                                 </div>
                                 <div class="col-lg-2 mt-2">Male</div>
                                 <div class="col-lg-1">
-                                    <input class="form-control" type="radio" id="female" name="gender" value="female">
+                                    <input class="form-control" type="radio" id="female" name="gender" value="female" [(ngModel)]="users.gender">
                                 </div>
                                 <div class="col-lg-2 mt-2">Female</div>
                             </div>

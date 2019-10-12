@@ -61,13 +61,13 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   save(registration){
-    console.log(registration);
     if (this.validate(registration)) {
       const param = {
         data: this.users
       };
-      this.registrationService.saveRegistration(param).subscribe(response => {
-        if(response.status === true){
+      console.log(param);
+      this.registrationService.saveRegistration(param).subscribe((data:any) => {
+        if(data.status === 'Data Successfull Saved'){
           Swal.fire({
             title: "Registration Success.",
             type: 'success',
@@ -78,6 +78,38 @@ export class RegistrationFormComponent implements OnInit {
             allowOutsideClick: false
           }).then((result) => {
             // disable form, hidden footer, show button login
+          });
+        }
+        else if(data.status === 'Email already exist'){
+          Swal.fire({
+            title: "Registration Failed. Email already exist.",
+            text: "Please enter another email. Thank you.",
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.value) {
+              return false;
+            }
+          });
+        }
+        else if(data.status === 'Phone number already exist'){
+          Swal.fire({
+            title: "Registration Failed. Phone number already exist.",
+            text: "Please enter another phone number. Thank you.",
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.value) {
+              return false;
+            }
           });
         }
         else{
