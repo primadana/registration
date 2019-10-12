@@ -30,6 +30,8 @@ export class RegistrationFormComponent implements OnInit {
   date: Date[] = [];
   year: Year[] = [];
   public users: any = {};
+  login: boolean = false;
+  disableForm: boolean = false;
 
   constructor(
     public registrationService: RegistrationFormService
@@ -38,6 +40,7 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit() {
     this.countDate();
     this.countYear();
+    this.disableForm = true;
   }
 
   countDate(){
@@ -77,7 +80,11 @@ export class RegistrationFormComponent implements OnInit {
             confirmButtonText: 'OK',
             allowOutsideClick: false
           }).then((result) => {
-            // disable form, hidden footer, show button login
+            // disable form
+            if(result.value){
+              this.login = true;
+              this.disableForm = true;
+            }
           });
         }
         else if(data.status === 'Email already exist'){

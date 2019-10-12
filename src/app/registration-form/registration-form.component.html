@@ -4,104 +4,106 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>Registration</h2>
-                    <form #registration="ngForm" (ngSubmit)="save(registration)">
-                    <div class="form-group row mt-3">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="phone_number" name="phone_number" placeholder="Mobile Number" required #phone_number="ngModel" [(ngModel)]="users.phone_number" [class.is-invalid]="phone_number.invalid && phone_number.touched" pattern="(628)[0-9]{7,15}">
-                            </div>
-                            <span class="help-block" [hidden]="phone_number.valid || phone_number.untouched">
-                                <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.required">*Phone number is required.</div>
-                                <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.pattern">*Please enter number only and valid Indonesian phone number.</div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="first_name" name="first_name" placeholder="First Name" #first_name="ngModel" [(ngModel)]="users.first_name" required [class.is-invalid]="first_name.invalid && first_name.touched">
-                            </div>
-                            <span class="help-block" [class.d-none]="first_name.valid || first_name.untouched">
-                                <div class="red-text">*First name is required.</div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="last_name" name="last_name" placeholder="Last Name" #last_name="ngModel" [(ngModel)]="users.last_name" required [class.is-invalid]="last_name.invalid && last_name.touched">
-                            </div>
-                            <span class="help-block" [class.d-none]="last_name.valid || last_name.untouched">
-                                <div class="red-text">*Last name is required.</div>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-12 col-form-label label-form">
-                            Date of Birth
-                        </label>
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <select id="month" name="month" class="form-control col-lg-3 mr-3" [(ngModel)]="users.month">
-                                    <option disabled>Month</option>
-                                    <option *ngFor="let rel of month" [ngValue]="rel.value">
-                                        {{rel.viewValue}}
-                                    </option>
-                                </select>
-                                <select id="date" name="date" class="form-control col-lg-2 mr-3" [(ngModel)]="users.date">
-                                    <option disabled>Date</option>
-                                    <option>1</option>
-                                    <option *ngFor="let rel of date" [ngValue]="rel.value">
-                                        {{rel.viewValue}}
-                                    </option>
-                                </select>
-                                <select id="year" name="year" class="form-control col-lg-2 mr-3" [(ngModel)]="users.year">
-                                    <option disabled>Year</option>
-                                    <option *ngFor="let rel of year" [ngValue]="rel.value">
-                                        {{rel.viewValue}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <div class="col-lg-1">
-                                    <input class="form-control" type="radio" id="male" name="gender" value="male" [(ngModel)]="users.gender">
+                    <fieldset [disabled] = disableForm>
+                        <form #registration="ngForm" (ngSubmit)="save(registration)">
+                        <div class="form-group row mt-3">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="phone_number" name="phone_number" placeholder="Mobile Number" required #phone_number="ngModel" [(ngModel)]="users.phone_number" [class.is-invalid]="phone_number.invalid && phone_number.touched" pattern="(628)[0-9]{7,15}">
                                 </div>
-                                <div class="col-lg-2 mt-2">Male</div>
-                                <div class="col-lg-1">
-                                    <input class="form-control" type="radio" id="female" name="gender" value="female" [(ngModel)]="users.gender">
+                                <span class="help-block" [hidden]="phone_number.valid || phone_number.untouched">
+                                    <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.required">*Phone number is required.</div>
+                                    <div class="red-text" *ngIf="phone_number.errors && phone_number.errors.pattern">*Please enter number only and valid Indonesian phone number.</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="first_name" name="first_name" placeholder="First Name" #first_name="ngModel" [(ngModel)]="users.first_name" required [class.is-invalid]="first_name.invalid && first_name.touched">
                                 </div>
-                                <div class="col-lg-2 mt-2">Female</div>
+                                <span class="help-block" [class.d-none]="first_name.valid || first_name.untouched">
+                                    <div class="red-text">*First name is required.</div>
+                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="email" name="email" placeholder="Email" #email="ngModel" [(ngModel)]="users.email" required [class.is-invalid]="email.invalid && email.touched" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="last_name" name="last_name" placeholder="Last Name" #last_name="ngModel" [(ngModel)]="users.last_name" required [class.is-invalid]="last_name.invalid && last_name.touched">
+                                </div>
+                                <span class="help-block" [class.d-none]="last_name.valid || last_name.untouched">
+                                    <div class="red-text">*Last name is required.</div>
+                                </span>
                             </div>
-                            <span class="help-block" [hidden]="email.valid || email.untouched">
-                                <div class="red-text" *ngIf="email.errors && email.errors.required">*Email is required.</div>
-                                <div class="red-text" *ngIf="email.errors && email.errors.pattern">*Please enter valid email address.</div>
-                            </span>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-12">
-                            <button type="submit" class="btn btn-block btn-primary mt-3">Register</button>
+                        <div class="form-group row">
+                            <label class="col-lg-12 col-form-label label-form">
+                                Date of Birth
+                            </label>
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <select id="month" name="month" class="form-control col-lg-3 mr-3" [(ngModel)]="users.month">
+                                        <option disabled>Month</option>
+                                        <option *ngFor="let rel of month" [ngValue]="rel.value">
+                                            {{rel.viewValue}}
+                                        </option>
+                                    </select>
+                                    <select id="date" name="date" class="form-control col-lg-2 mr-3" [(ngModel)]="users.date">
+                                        <option disabled>Date</option>
+                                        <option>1</option>
+                                        <option *ngFor="let rel of date" [ngValue]="rel.value">
+                                            {{rel.viewValue}}
+                                        </option>
+                                    </select>
+                                    <select id="year" name="year" class="form-control col-lg-2 mr-3" [(ngModel)]="users.year">
+                                        <option disabled>Year</option>
+                                        <option *ngFor="let rel of year" [ngValue]="rel.value">
+                                            {{rel.viewValue}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    </form>
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <div class="col-lg-1">
+                                        <input class="form-control" type="radio" id="male" name="gender" value="male" [(ngModel)]="users.gender">
+                                    </div>
+                                    <div class="col-lg-2 mt-2">Male</div>
+                                    <div class="col-lg-1">
+                                        <input class="form-control" type="radio" id="female" name="gender" value="female" [(ngModel)]="users.gender">
+                                    </div>
+                                    <div class="col-lg-2 mt-2">Female</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="email" name="email" placeholder="Email" #email="ngModel" [(ngModel)]="users.email" required [class.is-invalid]="email.invalid && email.touched" pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+                                </div>
+                                <span class="help-block" [hidden]="email.valid || email.untouched">
+                                    <div class="red-text" *ngIf="email.errors && email.errors.required">*Email is required.</div>
+                                    <div class="red-text" *ngIf="email.errors && email.errors.pattern">*Please enter valid email address.</div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-block btn-primary mt-3">Register</button>
+                            </div>
+                        </div>
+                        </form>
+                    </fieldset>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="kt-content kt-grid__item kt-grid__item--fluid footer" id="kt_content">
+<ng-container *ngIf="login">
+<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
     <div class="kt-portlet bg-none col-lg-6">
         <div class="kt-portlet__body">
             <div class="row">
@@ -116,3 +118,13 @@
         </div>
     </div>
 </div>
+</ng-container>
+<ng-container *ngIf="!login">
+<div class="kt-content kt-grid__item kt-grid__item--fluid" id="kt_content">
+    <div class="kt-portlet bg-none col-lg-6 footer">
+        <div class="kt-portlet__body">
+            <h2>Footer</h2>
+        </div>
+    </div>
+</div>
+</ng-container>
