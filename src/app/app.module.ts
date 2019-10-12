@@ -7,11 +7,13 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GlobalService } from './global.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
